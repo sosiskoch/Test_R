@@ -1,0 +1,105 @@
+<Screen1>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            text: 'Отдохни и измерь пульс 15 сек'
+        MDTextField:
+            id: p1_field
+            mode: "rectangle"
+            hint_text: "Введите пульс"
+        MDRaisedButton:
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            on_press:
+                root.move_next()
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen2"
+
+<Screen2>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            text: 'Сделайте 30 приседаний за 45 сек.'
+        MDRaisedButton:
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5}
+            on_press:
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen3"
+
+<Screen3>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            text: 'Измерьте пульс 15 сек.'
+        MDTextField:
+            id: p2_field
+            mode: "rectangle"
+            hint_text: "Введите пульс"
+        MDRaisedButton:
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            on_press:
+                root.move_next()
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen4"
+
+<Screen4>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            text: 'Отдохните 30 сек.'
+        MDRaisedButton:
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            on_press:
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen5"
+
+<Screen5>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            text: 'Измерьте пульс 15 сек'
+        MDTextField:
+            id: p3_field
+            mode: "rectangle"
+            hint_text: "Введите пульс"
+        MDRaisedButton:
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            on_press:
+                root.move_next()
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen6"
+
+<Screen6>:
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        MDLabel:
+            id: result_label
+            text: 'Посмотрите ваши результаты.'
+        MDRaisedButton:
+            text: 'Новый тест'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            on_press:
+                app.sm.transition.derection = "left"
+                app.sm.current = "Screen1"
