@@ -4,16 +4,58 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.label import MDLabel
+from kivy.clock import Clock
+from kivy.properties import BooleanProperty
 
 P1 = 0
 P2 = 0
 P3 = 0
+age = 0
+
+class CoutDown(MDLabel):
+   is_done = BooleanProperty(False)
+   def start(self):
+      Clock.schedule_interval(self.tick, 1)
+
+   def tick(self, tm):
+      t = int(self.text)
+      if t > 0:
+         self.text = str(t - 1)
+      else:
+         self.is_done = True
+         self.text = "Готово"
+         return False
+
+class Screen0(Screen):
+   """Экран с инструкцией"""
+   def move_next(self):
+      global age
+      age_field = self.ids["age_field"]
+      try:
+         age = int(age_field.text)
+         if age < 7:
+            age_field.error = True
+            age_field.helper_text = "Минимальный возраст 7 лет"
+         else:
+            self.parent.transition.derection = "left"
+            self.parent.current = "Screen1"
+      except:
+         age_field.error = True
+         age_field.helper_text = "Введите целое число!"
 
 class Screen1(Screen):
    """Экран с инструкцией"""
    def move_next(self):
       global P1
-      P1 = int(self.ids["p1_field"].text)
+      p1_field = self.ids["p1_field"]
+      try:
+         P1 = int(p1_field.text)
+         if P1 <= 0:
+            p1_field.error = True
+            p1_field.helper_text = "Введите число больше 0"
+         else:
+            self.parent.transition.derection = "left"
+            self.parent.current = "Screen2"
 
 class Screen2(Screen):
    """Экран с приседаниями"""
@@ -23,7 +65,15 @@ class Screen3(Screen):
    """Экран измерения пульса"""
    def move_next(self):
       global P2
-      P2 = int(self.ids["p2_field"].text)
+      p2_field = self.ids["p2_field"]
+      try:
+         P2 = int(p2_field.text)
+         if P2 <= 0:
+            p2_field.errror = True
+            p2_field.helper_text = "Введите число больше 0"
+         else:
+            self.parent.transition.derection = "left"
+            self.parent.current = "Screen4"
 
 class Screen4(Screen):
    """Экран отдыха"""
@@ -33,9 +83,33 @@ class Screen5(Screen):
    """Экран измерения пульса"""
    def move_next(self):
       global P3
-      P3 = int(self.ids["p3_field"].text)
+      p3_field = self.ids["p3_field"]
+      try:
+         P3 = int(p3_field.text)
+         if P3 <= 0:
+            p3_field.error = True
+            p3_field.helper_text = "Введите число больше 0"
+         else:
+            self.parent.transition.derection = "left"
+            self.parent.current = "Screen6"
+
       screen6 = self.parent.get_screen("Screen6")
-      screen6.ids["result_label"].text = f"P1 = {P1} P2 = {P2} P3 = {P3}"
+      kf = (4* (P1 + P2 + P3) - 200) / 10
+      n = (min(15, age) - 7) // 2
+      x  = 21 - 1.5 *n
+
+      if kf >= x:
+         res = "Низкий"
+      elif kf >= x -4 and kf < x:
+         res = "Удовлетворительный"
+      elif kf >= x - 9 and kf < x -4:
+         res = "Средний"
+      elif kf >= x -14.6 and kf < x-9:
+         res = "Выше среднего"
+      else:
+         res = "Высокий"
+
+      screen6.ids["result_label"].text = f"Ваш результат: {res}, Ваш коэффицент Руфье: {kf}"
 
 class Screen6(Screen):
    """Экран с результатами"""
@@ -44,6 +118,7 @@ class Screen6(Screen):
 class MyApp(MDApp):
    def build(self):
         self.sm = MDScreenManager()
+        self.sm.add_widget(Screen0(name = 'Screen0'))
         self.sm.add_widget(Screen1(name = 'Screen1'))
         self.sm.add_widget(Screen2(name = "Screen2"))
         self.sm.add_widget(Screen3(name = 'Screen3'))

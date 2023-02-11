@@ -1,13 +1,16 @@
-<Screen1>:
+<Screen0>:
     BoxLayout:
         padding: "8sp"
         orientation: "vertical"
         MDLabel:
-            text: 'Отдохни и измерь пульс 15 сек'
+            text: 'Сколько вам лет?'
         MDTextField:
-            id: p1_field
+            id: age_field
+            required: True
+            input_filter: "int"
             mode: "rectangle"
-            hint_text: "Введите пульс"
+            hint_text: "Возраст"
+            helper_text_mode: "on_error"
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -15,8 +18,34 @@
             pos_hint: {"center_x": 0.5} 
             on_press:
                 root.move_next()
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen2"
+
+<Screen1>:
+    on_enter:
+        root.ids.countdown1.start()
+    BoxLayout:
+        padding: "8sp"
+        orientation: "vertical"
+        Countdown:
+            id: countdown1
+            text: '15'
+            on_is_done:
+                root.ids.btn_next.disabled = False
+        MDTextField:
+            id: p1_field
+            hint_text: "Введите пульс"
+            required: True
+            input_filter: "int"
+            helper_text_mode: "on_error"
+            mode: "rectangle"
+        MDRaisedButton:
+            id: btn_next
+            text: 'Далее'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {"center_x": 0.5} 
+            disabled: True
+            on_press:
+                root.move_next()
 
 <Screen2>:
     BoxLayout:
@@ -34,15 +63,23 @@
                 app.sm.current = "Screen3"
 
 <Screen3>:
+    on_enter:
+        root.ids.countdown1.start()
     BoxLayout:
         padding: "8sp"
         orientation: "vertical"
-        MDLabel:
-            text: 'Измерьте пульс 15 сек.'
+        Countdown:
+            id: countdown1
+            text: '15'
+            on_is_done:
+                root.ids.btn_next.disabled = False
         MDTextField:
             id: p2_field
-            mode: "rectangle"
             hint_text: "Введите пульс"
+            required: True
+            input_filter: "int"
+            helper_text_mode: "on_error"
+            mode: "rectangle"
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -50,8 +87,6 @@
             pos_hint: {"center_x": 0.5} 
             on_press:
                 root.move_next()
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen4"
 
 <Screen4>:
     BoxLayout:
@@ -69,15 +104,23 @@
                 app.sm.current = "Screen5"
 
 <Screen5>:
+    on_enter:
+        root.ids.countdown1.start()
     BoxLayout:
         padding: "8sp"
         orientation: "vertical"
-        MDLabel:
-            text: 'Измерьте пульс 15 сек'
+        Countdown:
+            id: countdown1
+            text: '15'
+            on_is_done:
+                root.ids.btn_next.disabled = False
         MDTextField:
             id: p3_field
-            mode: "rectangle"
             hint_text: "Введите пульс"
+            required: True
+            input_filter: "int"
+            helper_text_mode: "on_enter"
+            mode: "rectangle"
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -102,4 +145,4 @@
             pos_hint: {"center_x": 0.5} 
             on_press:
                 app.sm.transition.derection = "left"
-                app.sm.current = "Screen1"
+                app.sm.current = "Screen0"
