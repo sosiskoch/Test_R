@@ -1,148 +1,180 @@
 <Screen0>:
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
         MDLabel:
             text: 'Сколько вам лет?'
+            halign: 'center'
         MDTextField:
             id: age_field
-            required: True
-            input_filter: "int"
-            mode: "rectangle"
             hint_text: "Возраст"
-            helper_text_mode: "on_error"
+            helper_text_mode: 'on_error'
+            required: 'true'
+            input_filter: 'int'
+            pos_hint: {"center_x": .5}
+            size_hint_x: .5
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             on_press:
                 root.move_next()
 
 <Screen1>:
-    on_enter:
+    on_enter: 
         root.ids.countdown1.start()
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
+        MDLabel:
+            text: 'Измерьте пульс в течение 15 секунд'
+            halign: 'center'
         Countdown:
             id: countdown1
             text: '15'
+            halign: 'center'
+            font_size: '50sp'
             on_is_done:
                 root.ids.btn_next.disabled = False
         MDTextField:
             id: p1_field
-            hint_text: "Введите пульс"
-            required: True
-            input_filter: "int"
-            helper_text_mode: "on_error"
-            mode: "rectangle"
+            hint_text: "Введите Ваш пульс"
+            helper_text_mode: 'on_error'
+            required: 'true'
+            input_filter: 'int'
+            pos_hint: {"center_x": .5}
+            size_hint_x: .5
         MDRaisedButton:
             id: btn_next
             text: 'Далее'
             font_size: '40sp'
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             disabled: True
             on_press:
                 root.move_next()
 
 <Screen2>:
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
         MDLabel:
-            text: 'Сделайте 30 приседаний за 45 сек.'
+            text: 'Сделайте 30 приседаний за 45 секунд'
+            halign: 'center'
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5}
+            pos_hint: {'center_x': 0.5}
             on_press:
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen3"
+                app.sm.transition.direction = 'left'
+                app.sm.current = 'Screen3' 
 
 <Screen3>:
-    on_enter:
+    on_enter: 
         root.ids.countdown1.start()
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
+        MDLabel:
+            text: 'Измерьте пульс в течение 15 секунд'
+            halign: 'center'
         Countdown:
             id: countdown1
             text: '15'
+            halign: 'center'
+            font_size: '50sp'
             on_is_done:
                 root.ids.btn_next.disabled = False
         MDTextField:
             id: p2_field
-            hint_text: "Введите пульс"
-            required: True
-            input_filter: "int"
-            helper_text_mode: "on_error"
-            mode: "rectangle"
+            hint_text: "Введите Ваш пульс"
+            helper_text_mode: 'on_error'
+            required: 'true'
+            input_filter: 'int'
+            pos_hint: {"center_x": .5}
+            size_hint_x: .5
         MDRaisedButton:
+            id: btn_next
             text: 'Далее'
             font_size: '40sp'
+            disabled: True
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             on_press:
                 root.move_next()
 
 <Screen4>:
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
         MDLabel:
-            text: 'Отдохните 30 сек.'
+            text: 'Отдохните 30 секунд'
+            halign: 'center'
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             on_press:
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen5"
+                app.sm.transition.direction = 'left'
+                app.sm.current = 'Screen5'
 
 <Screen5>:
-    on_enter:
+    on_enter: 
         root.ids.countdown1.start()
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
+        MDLabel:
+            text: 'Измерьте пульс в течение 15 секунд'
+            halign: 'center'
         Countdown:
             id: countdown1
             text: '15'
+            halign: 'center'
+            font_size: '50sp'
             on_is_done:
                 root.ids.btn_next.disabled = False
         MDTextField:
             id: p3_field
-            hint_text: "Введите пульс"
-            required: True
-            input_filter: "int"
-            helper_text_mode: "on_enter"
-            mode: "rectangle"
+            hint_text: "Введите Ваш пульс"
+            helper_text_mode: 'on_error'
+            required: 'true'
+            input_filter: 'int'
+            pos_hint: {"center_x": .5}
+            size_hint_x: .5
         MDRaisedButton:
+            id: btn_next
             text: 'Далее'
             font_size: '40sp'
+            disabled: True
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             on_press:
                 root.move_next()
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen6"
 
 <Screen6>:
     BoxLayout:
-        padding: "8sp"
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
         MDLabel:
             id: result_label
-            text: 'Посмотрите ваши результаты.'
+            text: 'Ваш результат'
+            halign: 'center'
         MDRaisedButton:
-            text: 'Новый тест'
+            text: 'Сначала'
             font_size: '40sp'
             size_hint: 0.5, None
-            pos_hint: {"center_x": 0.5} 
+            pos_hint: {'center_x': 0.5}
             on_press:
-                app.sm.transition.derection = "left"
-                app.sm.current = "Screen0"
+                app.sm.transition.direction = 'left'
+                app.sm.current = 'Screen0'
