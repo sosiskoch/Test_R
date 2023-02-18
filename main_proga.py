@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.clock import Clock
 from kivymd.uix.label import MDLabel
 from kivy.properties import BooleanProperty
+from kivy.animation import Animation
 
 P1 = 0
 P2 = 0
@@ -24,6 +25,11 @@ class Countdown(MDLabel):
          self.is_done = True
          self.text = '15 секунд прошло. Введите Ваш пульс'
          return False
+
+class Screen01(Screen):
+   def move_next(self):
+      self.parent.transition.direction = 'left'
+      self.parent.current = 'Screen0'
 
 class Screen0(Screen):
    def move_next(self):
@@ -59,6 +65,7 @@ class Screen1(Screen):
 
 class Screen2(Screen):
    pass
+
 
 class Screen3(Screen):
    def move_next(self):
@@ -116,6 +123,7 @@ class Screen6(Screen):
 class MyApp(MDApp):
    def build(self):
       self.sm = MDScreenManager()
+      self.sm.add_widget(Screen01(name='Screen01'))
       self.sm.add_widget(Screen0(name='Screen0'))
       self.sm.add_widget(Screen1(name='Screen1'))
       self.sm.add_widget(Screen2(name='Screen2'))
@@ -127,3 +135,28 @@ class MyApp(MDApp):
 
 
 MyApp().run()
+
+# Это во 2 скрине
+# anim = Animation(pos_hint = {"top": 0.1}, duration = 0.75)\
+#    + Animation(pos_hint = {"top": 1}, duration = 0.75)
+# anim.start(btn_sit)
+
+# txt_instruction = '''
+# Данное приложение позволит вам с помощью теста Руфье \n провести первичную диагностику вашего здоровья.\n
+# Проба Руфье представляет собой нагрузочный комплекс, \n предназначенный для оценки работоспособности сердца при физической нагрузке.\n
+# У испытуемого определяют частоту пульса за 15 секунд.\n
+# Затем в течение 45 секунд испытуемый выполняет 30 приседаний.\n
+# После окончания нагрузки пульс подсчитывается вновь: \nчисло пульсаций за первые 15 секунд, 30 секунд отдыха,\n число пульсаций за последние 15 секунд.\n'''
+
+# txt_test1 = '''Замерьте пульс за 15 секунд.\n
+# Результат запишите в соответствующее поле.'''
+
+# txt_test2 = '''Выполните 30 приседаний за 45 секунд.\n 
+# Нажмите кнопку "Начать", чтобы запустить счетчик приседаний.\n
+# Делайте приседания со скоростью счетчика.'''
+
+# txt_test3 = '''В течение минуты замерьте пульс два раза:\n 
+# за первые 15 секунд минуты, затем за последние 15 секунд.\n
+# Результаты запишите в соответствующие поля.''' 
+
+# txt_sits = 'Выполните 30 приседаний за 45 секунд.'

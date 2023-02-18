@@ -1,10 +1,30 @@
+<Screen01>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '8sp'
+        spacing: '8sp'
+        MDLabel:
+            text:'Данное приложение позволит вам с помощью теста Руфье \n провести первичную диагностику вашего здоровья.\n Проба Руфье представляет собой нагрузочный комплекс, \n предназначенный для оценки работоспособности сердца при физической нагрузке.'
+            halign: 'center'
+        MDRaisedButton:
+            text: 'Начать'
+            font_size: '40sp'
+            size_hint: 0.5, None
+            pos_hint: {'center_x': 0.5}
+            on_press:
+                root.move_next()
+
 <Screen0>:
     BoxLayout:
         orientation: 'vertical'
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
-            text: 'Сколько вам лет?'
+            text: 'Шаг 1 из 6'
+            halign: 'center'
+            font_size: "16sp"
+        MDLabel:
+            text:'Сколько вам лет?'
             halign: 'center'
         MDTextField:
             id: age_field
@@ -30,13 +50,18 @@
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
+            text: 'Шаг 2 из 6'
+            halign: 'center'
+            font_size: "16sp"
+        MDLabel:
             text: 'Измерьте пульс в течение 15 секунд'
             halign: 'center'
+            font_size: "20"
         Countdown:
             id: countdown1
-            text: '15'
+            text: '1'
             halign: 'center'
-            font_size: '50sp'
+            font_size: '30sp'
             on_is_done:
                 root.ids.btn_next.disabled = False
         MDTextField:
@@ -63,8 +88,28 @@
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
-            text: 'Сделайте 30 приседаний за 45 секунд'
+            text: 'Шаг 3 из 6'
             halign: 'center'
+            font_size: "16sp"
+        MDLabel:
+            text: "Выполните 30 приседаний за 45 секунд"
+            halign: "center"
+            font_size: "20"
+        BoxLayout:
+            Countdown:
+                id: countdown1
+                text: "45"
+                font_size: "30sp"
+                halign: "center"
+                on_is_done:
+                    root.ids.btn_next.disabled = False
+            MDRaisedButton:
+                id: btn_start
+                text: "Старт"
+                font_size: "40sp"
+            MDRaisedButton:
+                id: btn_start
+                text: "button"        
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -82,8 +127,13 @@
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
+            text: 'Шаг 4 из 6'
+            halign: 'center'
+            font_size: "16sp"
+        MDLabel:
             text: 'Измерьте пульс в течение 15 секунд'
             halign: 'center'
+            font_size: "20"
         Countdown:
             id: countdown1
             text: '15'
@@ -115,8 +165,13 @@
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
+            text: 'Шаг 5 из 6'
+            halign: 'center'
+            font_size: "16sp"
+        MDLabel:
             text: 'Отдохните 30 секунд'
             halign: 'center'
+            font_size: "20sp"
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -134,8 +189,13 @@
         padding: '8sp'
         spacing: '8sp'
         MDLabel:
+            text: 'Шаг 6 из 6'
+            halign: 'center'
+            font_size: "16sp"
+        MDLabel:
             text: 'Измерьте пульс в течение 15 секунд'
             halign: 'center'
+            font_size: "20sp"
         Countdown:
             id: countdown1
             text: '15'
