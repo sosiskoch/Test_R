@@ -62,9 +62,32 @@ class Screen1(Screen):
       except:
          p1_field.error = True
          p1_field.helper_text = 'Введите целое число'
+   def do_start(self):
+      btn_start = self.ids['btn_start']
+      countdown1 = self.ids['countdown1']
+      if btn_start.text == 'Старт':
+         btn_start.text = 'Далее'
+         btn_start.disabled = True
+         countdown1.start()
+      else:
+         self.move_next()
 
 class Screen2(Screen):
-   pass
+   def do_start(self):
+      btn_start = self.ids['btn_start']
+      countdown1 = self.ids['countdown1']
+      btn_sit = self.ids['btn_sit']
+      if btn_start.text == 'Старт':
+         btn_start.text = 'Далее'
+         btn_start.disabled = True
+         countdown1.start()
+         self.anim = Animation(pos_hint={'center_x' : 0.1} , duration = 0.75)\
+            + Animation(pos_hint={'center_x' : 1} , duration = 0.75)
+         self.anim.repeat = True
+         self.anim.start(btn_sit)
+      else:
+         self.parent.transition.direction = 'left'
+         self.parent.current = 'Screen3'
 
 
 class Screen3(Screen):
@@ -123,7 +146,7 @@ class Screen6(Screen):
 class MyApp(MDApp):
    def build(self):
       self.sm = MDScreenManager()
-      self.sm.add_widget(Screen01(name='Screen01'))
+      self.sm.add_widget(Screen01(name='Screen00'))
       self.sm.add_widget(Screen0(name='Screen0'))
       self.sm.add_widget(Screen1(name='Screen1'))
       self.sm.add_widget(Screen2(name='Screen2'))
