@@ -54,12 +54,11 @@
             halign: 'center'
             font_size: "16sp"
         MDLabel:
-            text: 'Измерьте пульс в течение 15 секунд'
+            text: 'Измерьте пульс в течение 15 секунд. \n Результат запишите в соответствующее поле.'
             halign: 'center'
-            font_size: "20"
         Countdown:
             id: countdown1
-            text: '1'
+            text: '15'
             halign: 'center'
             font_size: '30sp'
             on_is_done:
@@ -73,14 +72,13 @@
             pos_hint: {"center_x": .5}
             size_hint_x: .5
         MDRaisedButton:
-            id: btn_next
-            text: 'Далее'
-            font_size: '40sp'
+            id: btn_start
+            text: 'Старт'
+            font_size: '25sp'
             size_hint: 0.5, None
             pos_hint: {'center_x': 0.5}
-            disabled: True
             on_press:
-                root.move_next()
+                root.do_start()
 
 <Screen2>:
     BoxLayout:
@@ -90,7 +88,6 @@
         MDLabel:
             text: 'Шаг 3 из 6'
             halign: 'center'
-            font_size: "16sp"
         MDLabel:
             text: "Выполните 30 приседаний за 45 секунд"
             halign: "center"
@@ -103,22 +100,20 @@
                 halign: "center"
                 on_is_done:
                     root.ids.btn_next.disabled = False
+                    root.anim.stop(root.ids.btn_sit)
+            MDRoundFlatButton:
+                id: btn_sit
+                pos_hint: {"center_x": 0}
+                text: " "
             MDRaisedButton:
                 id: btn_start
                 text: "Старт"
-                font_size: "40sp"
-            MDRaisedButton:
-                id: btn_start
-                text: "button"        
-        MDRaisedButton:
-            text: 'Далее'
-            font_size: '40sp'
-            size_hint: 0.5, None
-            pos_hint: {'center_x': 0.5}
-            on_press:
-                app.sm.transition.direction = 'left'
-                app.sm.current = 'Screen3' 
-
+                font_size: "25sp"
+                size_hint: 0.5, None
+                pos_hint: {'center_x': 0.5}
+                on_press:
+                    root.do_start() 
+                    
 <Screen3>:
     on_enter: 
         root.ids.countdown1.start()
@@ -131,9 +126,8 @@
             halign: 'center'
             font_size: "16sp"
         MDLabel:
-            text: 'Измерьте пульс в течение 15 секунд'
+            text: 'Измерьте пульс в течение 15 секунд. \n Результат запишите в соответствующее поле.'
             halign: 'center'
-            font_size: "20"
         Countdown:
             id: countdown1
             text: '15'
@@ -171,7 +165,6 @@
         MDLabel:
             text: 'Отдохните 30 секунд'
             halign: 'center'
-            font_size: "20sp"
         MDRaisedButton:
             text: 'Далее'
             font_size: '40sp'
@@ -195,7 +188,6 @@
         MDLabel:
             text: 'Измерьте пульс в течение 15 секунд'
             halign: 'center'
-            font_size: "20sp"
         Countdown:
             id: countdown1
             text: '15'
