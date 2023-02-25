@@ -26,7 +26,7 @@ class Countdown(MDLabel):
          self.text = '15 секунд прошло. Введите Ваш пульс'
          return False
 
-class Screen01(Screen):
+class Screen00(Screen):
    def move_next(self):
       self.parent.transition.direction = 'left'
       self.parent.current = 'Screen0'
